@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling"] # 依赖一个现代构建后端，如 hatchling
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/llm_study"]
+
+[project]
+name = "llm-study"
+version = "0.1.1"
+description = "Practical tools for large language model study"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "transformers>=4.50.0",
+]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+]
+authors = [
+    {name = "LetuSsS", email = "weiliang_bai@foxmail.com"},
+]
+
+[project.urls]
+"Homepage" = "https://github.com/WilliamBy/llm_utils"
+"Bug Tracker" = "https://github.com/WilliamBy/llm_utils/issues"
