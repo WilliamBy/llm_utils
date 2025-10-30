@@ -1,12 +1,10 @@
-<p align="center">
-![logo](./assets/logo.png)
-</p>
-<h3 align="center">
+# llm-study
+
+![Dynamic TOML Badge](https://img.shields.io/badge/dynamic/toml?url=https%3A%2F%2Fraw.githubusercontent.com%2FWilliamBy%2Fllm_utils%2Frefs%2Fheads%2Fmain%2Fpyproject.toml&query=%24.project.requires-python&label=python)
+![PyPI - Version](https://img.shields.io/pypi/v/llm-study)
+
 Practical toolkit for LLM studies
-</h3>
-<p align="center">
-[![PyPI version](https://img.shields.io/pypi/v/llm-toolset.svg)](https://pypi.org/project/llm-study) [![Made with Qwen](https://img.shields.io/badge/Made%20with-Qwen-blue)](https://github.com/QwenLM/Qwen3-Coder)
-</p>
+
 ---
 
 ## Installation
