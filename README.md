@@ -12,6 +12,10 @@ To install LLM Toolset, ensure you have Python 3.9 or higher installed, then run
 ```bash
 pip install llm-study
 ```
+To install nightly version:
+```bash
+pip install git+https://github.com/WilliamBy/llm_utils.git@dev
+```
 
 ## Dependencies
 LLM Toolset depends on the following libraries:
