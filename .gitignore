@@ -62,5 +62,3 @@ pytest.ini
 *.pt
 datasets/
 *.jsonl
-
-notebooks/
