@@ -46,4 +46,6 @@ notebooks = [
     "matplotlib>=3.10.8",
     "seaborn>=0.13.2",
     "modelscope[datasets]>=1.32.0",
+    "safetensors>=0.7.0",
+    "tensordict>=0.10.0",
 ]

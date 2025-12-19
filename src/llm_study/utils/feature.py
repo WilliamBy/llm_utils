@@ -8,7 +8,7 @@ import os
 from typing import Literal, Union
 from pathlib import Path
 
-def load(path: str | os.PathLike, layer: int, step: int, type: Literal["query", "key", "value", "attn_weights"], rope: bool = False) -> np.ndarray:
+def load(path: str | os.PathLike, layer: int, step: int, type: Literal["query", "key", "value", "attn_weights"], rope: bool = False, format: Literal["numpy", "torch"] = "torch") -> Union[np.ndarray, torch.Tensor]:
     """ load pt files from a directory as numpy ndarrays """
     # 组装文件路径，并读取 .pt 文件为 numpy ndarray，考虑 RoPE 后缀
     filename = f"layer{layer}_step{step}_{type}"
@@ -17,7 +17,9 @@ def load(path: str | os.PathLike, layer: int, step: int, type: Literal["query", 
     filename += ".pt"
     file_path = Path(path) / filename
     tensor = torch.load(file_path, map_location="cpu")
-    arr = tensor.cpu().numpy()
+    arr = tensor.cpu()
+    if format == "numpy":
+        arr = arr.numpy()
     return arr
 
 def stat(path: str | os.PathLike) -> dict:
@@ -44,36 +46,3 @@ def stat(path: str | os.PathLike) -> dict:
         'types': sorted(types)
     }
     return res
-
-def attn_heatmap(attention_weights: Union[torch.Tensor | np.ndarray], title: str = "Attention Heatmap", show: bool = True):
-    """ 
-    Parse attention weights from a tensor or numpy array and plot the heatmap
-    Args:
-        attention_weights: torch tensor or numpy array, shape [..., query_seq_len, key_seq_len]
-    """
-    import matplotlib.pyplot as plt
-
-    # attention_weights: numpy ndarray or torch tensor, shape [..., seq_len, seq_len]
-    # Only plot the last two dimensions
-
-    # If attention_weights is a torch tensor, convert to numpy
-    if isinstance(attention_weights, torch.Tensor):
-        attn = attention_weights.detach().cpu().numpy()
-    else:
-        attn = attention_weights
-
-    # Squeeze batch/head dims if present (assume shape is [*, seq_len, seq_len])
-    if attn.ndim > 2:
-        attn = attn.reshape(-1, attn.shape[-2], attn.shape[-1])[0]
-
-    plt.figure(figsize=(6, 5))
-    # query positions on y-axis (rows), reversed (0 on the top)
-    plt.imshow(attn, aspect='auto', cmap='viridis', origin='upper')
-    plt.colorbar(label="Attention Weight")
-    plt.xlabel("Key positions")
-    plt.ylabel("Query positions")
-    plt.title(title)
-    plt.tight_layout()
-    if show:
-        plt.show()
-    return plt.axes()
