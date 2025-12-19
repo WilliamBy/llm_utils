@@ -1,18 +1,24 @@
 [build-system]
-requires = ["hatchling"] # 依赖一个现代构建后端，如 hatchling
+requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/llm_study"]
+
+[[tool.uv.index]]
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+default = true
 
 [project]
 name = "llm-study"
 version = "0.1.1"
 description = "Practical tools for large language model study"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 dependencies = [
-    "transformers>=4.50.0",
+    "flash-attn>=2.8.3",
+    "torch==2.9.1",
+    "transformers==4.57.1",
 ]
 classifiers = [
   "Programming Language :: Python :: 3",
@@ -25,3 +31,19 @@ authors = [
 [project.urls]
 "Homepage" = "https://github.com/WilliamBy/llm_utils"
 "Bug Tracker" = "https://github.com/WilliamBy/llm_utils/issues"
+
+[tool.uv.extra-build-dependencies]
+    flash-attn = ["torch"]
+
+[project.scripts]
+kv_calc = "llm_study.utils.kv_calc:main"
+
+[dependency-groups]
+notebooks = [
+    "voila>=0.5.11",
+    "ipykernel>=6.31.0",
+    "ipywidgets>=8.1.8",
+    "matplotlib>=3.10.8",
+    "seaborn>=0.13.2",
+    "modelscope[datasets]>=1.32.0",
+]

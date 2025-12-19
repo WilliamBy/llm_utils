@@ -58,3 +58,9 @@ build/
 
 # pytest
 pytest.ini
+
+*.pt
+datasets/
+*.jsonl
+
+notebooks/

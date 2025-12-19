@@ -8,14 +8,30 @@ Practical toolkit for LLM studies
 ---
 
 ## Installation
+
+### PyPi
+
 To install LLM Toolset, ensure you have Python 3.9 or higher installed, then run the following command:
 ```bash
 pip install llm-study
 ```
 
+### Source
+
+```bash
+pip install -e .
+```
+
+(Optional) Install transformers from source:
+```bash
+pushd transformers
+git fetch --tags && git checkout v4.47.1
+popd
+```
+
 ## Dependencies
 LLM Toolset depends on the following libraries:
-- transformers (version >= 4.50.0)
+- transformers (version >= 4.47.1)
 
 ### Example: kvcache calculator
 `kv_calc.py` provides basic key-value calculation functionalities.
