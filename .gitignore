@@ -43,10 +43,6 @@ build/
 *.egg
 *.whl
 
-# Jupyter Notebook
-.ipynb_checkpoints
-*.ipynb
-
 # Environment variables
 .env
 .env.local

@@ -14,9 +14,8 @@ name = "llm-study"
 version = "0.1.1"
 description = "Practical tools for large language model study"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = "==3.12.4"
 dependencies = [
-    "flash-attn>=2.8.3",
     "torch==2.9.1",
     "transformers==4.57.1",
 ]
@@ -45,7 +44,6 @@ notebooks = [
     "ipywidgets>=8.1.8",
     "matplotlib>=3.10.8",
     "seaborn>=0.13.2",
-    "modelscope[datasets]>=1.32.0",
     "safetensors>=0.7.0",
-    "tensordict>=0.10.0",
+    "datasets>=3.6.0",
 ]

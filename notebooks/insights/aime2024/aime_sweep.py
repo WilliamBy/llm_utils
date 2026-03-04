@@ -4,7 +4,7 @@ from llm_study.model_patch.llama3_hook import enable_capture, get_step
 from transformers import LlamaForCausalLM, GenerationConfig
 
 # custom
-MODEL = "/home/yexuming/.cache/modelscope/hub/models/LLM-Research/Meta-Llama-3___1-8B"
+MODEL = "gradientai/Llama-3-8B-Instruct-Gradient-1048k"
 output_dir = "./results"
 
 # clean output directory
@@ -23,8 +23,8 @@ enable_capture(model, output_dir, mode="qkvaQK")
 
 # sample from dataset
 from random import choice
-from modelscope.msdatasets import MsDataset
-ds = MsDataset.load('AI-ModelScope/aime_2024 ', split='train')
+from datasets import load_dataset
+ds = load_dataset('Maxwell-Jia/AIME_2024', split='train')
 sample = choice(ds)
 print(f"Sample: \n{sample}")
 
@@ -52,7 +52,7 @@ print("Generated new tokens: ", num_new_tokens)
 print(f"Total Steps: {get_step()}")
 
 # output
-answer = tokenizer.decode(outputs[0][num_input_tokens:], skip_special_tokens=True)
-print("Solution：", answer)
+# answer = tokenizer.decode(outputs[0][num_input_tokens:], skip_special_tokens=True)
+# print("Solution：", answer)
 
 
